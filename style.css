@@ -1,0 +1,487 @@
+/* ======================================
+   CSS Variables & Global Styles
+====================================== */
+:root {
+    --primary-color: #2c3e50;       /* Deep navy/charcoal */
+    --accent-color:  #d4af37;       /* Rich gold */
+    --background-color: #f9f9f9;     /* Clean light background */
+    --text-color:      #444;        /* Standard text color */
+    --muted-text-color: #777;       /* For secondary text */
+  }
+  
+  body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+  }
+  
+  /* ======================================
+     Animations
+  ====================================== */
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInSection {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes backgroundZoom {
+    from { background-size: 100%; }
+    to { background-size: 110%; }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  /* ======================================
+     Navigation Bar
+  ====================================== */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: slideDown 0.8s ease-out;
+  }
+  
+  .navbar .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .logo img {
+    height: 50px;
+    margin-right: 10px;
+    /* To stop the rotation, the animation is removed */
+    /* animation: spin 5s linear infinite; */
+  }
+  
+  .navbar .logo h1 {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+  }
+  
+  .navbar .logo h1:hover {
+    animation: bounce 0.5s;
+  }
+  
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar .nav-links li {
+    margin: 0 1rem;
+  }
+  
+  .navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .navbar .nav-links a:hover {
+    color: var(--accent-color);
+    animation: bounce 0.5s;
+  }
+  
+  /* ======================================
+     Hero Section
+  ====================================== */
+  .hero {
+    background: url('WhatsApp\ Image\ 2025-01-30\ at\ 7.51.43\ PM.jpeg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    animation: backgroundZoom 20s ease-in-out infinite alternate;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* A gradient overlay to boost text readability */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    animation: slideUp 1.5s ease-in-out;
+  }
+  
+  .hero-content h1 {
+    font-size: 4rem;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: fadeIn 2s ease-in-out, float 3s infinite ease-in-out;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .hero-content p {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    animation: fadeIn 3s ease-in-out;
+  }
+  
+  .hero-content .btn {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+    animation: slideUp 1.5s ease-in-out, pulse 2s infinite;
+  }
+  
+  /* ======================================
+     About Us Section
+  ====================================== */
+  .about {
+    padding: 6rem 2rem;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0; /* Hidden by default – will animate into view */
+  }
+  
+  .about.visible {
+    animation: fadeInSection 1s ease-out forwards;
+  }
+  
+  .about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 3s ease-in-out;
+  }
+  
+  .about-images {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+  
+  .about-images img {
+    width: 30%;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  
+  .about-images img:nth-child(1) { animation-delay: 0.5s; }
+  .about-images img:nth-child(2) { animation-delay: 0.7s; }
+  .about-images img:nth-child(3) { animation-delay: 0.9s; }
+  
+  .about-images img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ======================================
+     Products Section
+  ====================================== */
+  .products {
+    padding: 6rem 2rem;
+    text-align: center;
+    background-color: var(--background-color);
+    opacity: 0;
+  }
+  
+  .products.visible {
+    animation: fadeInSection 1s ease-out forwards;
+  }
+  
+  .products h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .product-card {
+    background: linear-gradient(135deg, #fff, #f0f0f0);
+    padding: 1rem;
+    border-radius: 10px;
+    width: 30%;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  .product-card:nth-child(1) { animation-delay: 0.3s; }
+  .product-card:nth-child(2) { animation-delay: 0.5s; }
+  .product-card:nth-child(3) { animation-delay: 0.7s; }
+  
+  .product-card:hover {
+    transform: translateY(-10px) rotate(0.5deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .product-card h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .product-card p {
+    font-size: 1rem;
+  }
+  /* ======================================
+   Gallery Section
+====================================== */
+.gallery {
+    padding: 6rem 2rem;
+    text-align: center;
+    background-color: #fff;
+    opacity: 1; /* Ensure the gallery is visible */
+  }
+  
+  .gallery h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1rem;
+  }
+  
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  /* Background layer: this element will be blurred and darkened on hover */
+  .gallery-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  /* Foreground image remains on top */
+  .gallery-item img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  /* On hover, only the background layer gets blurred and darkened */
+  .gallery-item:hover .gallery-bg {
+    filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Optionally, you can slightly reduce the opacity of the foreground image on hover so the background effect shows through */
+  .gallery-item:hover img {
+    /* Uncomment the next line if you want the image to become slightly transparent */
+    /* opacity: 0.95; */
+    transform: none; /* If you don't want any zoom effect on the image */
+  }
+  
+  
+  /* ======================================
+     Contact Section
+  ====================================== */
+  .contact {
+    padding: 6rem 2rem;
+    text-align: center;
+    background-color: var(--background-color);
+    opacity: 0;
+  }
+  
+  .contact.visible {
+    animation: fadeInSection 1s ease-out forwards;
+  }
+  
+  .contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+  }
+  
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+  }
+  
+  .contact-form button {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .contact-form button:hover {
+    background-color: #e6b800;
+    transform: translateY(-3px);
+  }
+  
+  .contact-info {
+    margin-top: 2rem;
+  }
+  
+  .contact-info p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+  
+  /* ======================================
+     Footer
+  ====================================== */
+  footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    opacity: 0;
+    animation: fadeInSection 1s ease-out forwards;
+  }
+  
+  footer .social-icons {
+    margin-top: 1rem;
+  }
+  
+  footer .social-icons a {
+    color: #fff;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  footer .social-icons a:hover {
+    color: var(--accent-color);
+    animation: bounce 0.5s;
+  }
+  
+  /* ======================================
+     Responsive Design
+  ====================================== */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .product-grid, .gallery-grid {
+      flex-direction: column;
+      grid-template-columns: 1fr;
+    }
+    
+    .about-images {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .about-images img {
+      width: 80%;
+      margin-bottom: 1rem;
+    }
+    
+    .product-card {
+      width: 90%;
+      margin: 1rem auto;
+    }
+  }
+  
