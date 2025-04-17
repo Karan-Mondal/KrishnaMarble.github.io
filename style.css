@@ -295,68 +295,236 @@
     font-size: 1rem;
   }
   /* ======================================
-   Gallery Section
+   Gallery Section - Complete Rewrite
 ====================================== */
 .gallery {
-    padding: 6rem 2rem;
-    text-align: center;
-    background-color: #fff;
-    opacity: 1; /* Ensure the gallery is visible */
+  padding: 6rem 2rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.gallery h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.gallery-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.gallery-filter button {
+  padding: 0.8rem 1.8rem;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.gallery-filter button.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.gallery-grid-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 300px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Modal Styles */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 2000;
+  animation: fadeIn 0.3s;
+}
+
+.gallery-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.gallery-modal-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.gallery-modal-close:hover {
+  color: var(--accent-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-  
-  .gallery h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    animation: fadeIn 2s ease-in-out;
+  .gallery-item {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 4rem 1.5rem;
   }
   
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
   }
   
   .gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
-  /* Background layer: this element will be blurred and darkened on hover */
-  .gallery-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-    transition: filter 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  .gallery-item {
+    height: 280px;
   }
   
-  /* Foreground image remains on top */
-  .gallery-item img {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  .gallery-filter button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 2000;
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--accent-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 4rem 1rem;
   }
   
-  /* On hover, only the background layer gets blurred and darkened */
-  .gallery-item:hover .gallery-bg {
-    filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.5);
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
-  /* Optionally, you can slightly reduce the opacity of the foreground image on hover so the background effect shows through */
-  .gallery-item:hover img {
-    /* Uncomment the next line if you want the image to become slightly transparent */
-    /* opacity: 0.95; */
-    transform: none; /* If you don't want any zoom effect on the image */
+  .gallery-item {
+    aspect-ratio: 16/9; /* Wider aspect ratio for mobile */
   }
+  
+  .gallery-filter button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+  
+ 
+  
+  
   
   
   /* ======================================

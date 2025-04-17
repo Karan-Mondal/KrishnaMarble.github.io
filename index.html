@@ -35,7 +35,7 @@
   <!-- About Us Section -->
   <section id="about" class="about">
     <h2>About Us</h2>
-    <p>At Krishna Marble, we bring you the finest quality marble, granite, and sanitary items. With over 20 years of experience, we are committed to delivering excellence and elegance to your spaces.</p>
+    <p>At Krishna Marble, we bring you the finest quality marble, granite, and sanitary items. We are committed to delivering excellence and elegance to your spaces.</p>
     <div class="about-images">
       <img src="IMG_20240623_165908_184.jpg" alt="Marble">
       <img src="IMG_20240623_170314_649.jpg" alt="Granite">
@@ -43,48 +43,108 @@
     </div>
   </section>
 
-  <!-- Products Section -->
-  <section id="products" class="products">
-    <h2>Our Products</h2>
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="IMG_20240623_165908_184.jpg" alt="Marble">
-        <h3>Marble Tiles</h3>
-        <p>Elegant and timeless marble tiles for floors and walls.</p>
-      </div>
-      <div class="product-card">
-        <img src="IMG_20240623_170314_649.jpg" alt="Granite">
-        <h3>Granite Tiles</h3>
-        <p>Durable and stylish granite tiles for kitchens and bathrooms.</p>
-      </div>
-      <div class="product-card">
-        <img src="20240919_111546_0008.png" alt="Sanitary Items">
-        <h3>Sanitary Items</h3>
-        <p>High-quality sanitary items for modern bathrooms.</p>
-      </div>
+  <!-- Update Products Section -->
+<section id="products" class="products">
+  <h2>Our Products</h2>
+  <div class="product-grid">
+    <div class="product-card" data-gallery="marble">
+      <img src="IMG_20240623_165908_184.jpg" alt="Marble">
+      <h3>Marble Tiles</h3>
+      <p>Elegant and timeless marble tiles for floors and walls.</p>
     </div>
-  </section>
+    <div class="product-card" data-gallery="granite">
+      <img src="IMG_20240623_170314_649.jpg" alt="Granite">
+      <h3>Granite Tiles</h3>
+      <p>Durable and stylish granite tiles for kitchens and bathrooms.</p>
+    </div>
+    <div class="product-card" data-gallery="sanitary">
+      <img src="20240919_111546_0008.png" alt="Sanitary Items">
+      <h3>Sanitary Items</h3>
+      <p>High-quality sanitary items for modern bathrooms.</p>
+    </div>
+  </div>
+</section>
 
+<!-- Update Gallery Section -->
 <!-- Gallery Section -->
 <section id="gallery" class="gallery">
-  <h2>Gallery</h2>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <!-- The background layer -->
-      <div class="gallery-bg" style="background-image: url('IMG_20241211_130215_336.jpg');"></div>
-      <!-- The foreground image remains sharp -->
-      <img src="IMG_20241211_130215_336.jpg" alt="Marble">
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-bg" style="background-image: url('IMG_20240623_165908_184.jpg');"></div>
-      <img src="IMG_20240623_165908_184.jpg" alt="Granite">
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-bg" style="background-image: url('IMG_20240623_170357_049.jpg');"></div>
-      <img src="IMG_20240623_170357_049.jpg" alt="Sanitary Items">
-    </div>
-    <!-- Add additional gallery-item blocks as needed -->
+  <h2>Our Gallery</h2>
+  <div class="gallery-filter">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="marble">Marble</button>
+    <button data-filter="granite">Granite</button>
+    <button data-filter="sanitary">Sanitary</button>
   </div>
+  
+  <!-- All Items Gallery -->
+  <div class="gallery-container all active">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="IMG_20240623_165908_184.jpg" alt="Marble Design">
+      </div>
+      <div class="gallery-item">
+        <img src="IMG_20240623_170314_649.jpg" alt="Granite Design">
+      </div>
+      <div class="gallery-item">
+        <img src="20240919_111546_0008.png" alt="Sanitary Item">
+      </div>
+      <!-- Add more items as needed -->
+    </div>
+  </div>
+  
+  <!-- Marble Gallery -->
+  <div class="gallery-container marble">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="IMG_20240623_165908_184.jpg" alt="Marble Design 1">
+      </div>
+      <div class="gallery-item">
+        <img src="IMG_20241211_130215_336.jpg" alt="Marble Design 2">
+      </div>
+      <!-- Add more marble items -->
+    </div>
+  </div>
+  
+  <!-- Granite Gallery -->
+  <div class="gallery-container granite">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="IMG_20240623_170314_649.jpg" alt="Granite Design 1">
+      </div>
+      <!-- Add more granite items -->
+    </div>
+  </div>
+  
+  <!-- Sanitary Gallery -->
+  <div class="gallery-container sanitary">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="20240919_111546_0008.png" alt="Sanitary Item 1">
+      </div>
+      <div class="gallery-item">
+        <img src="IMG_20240623_170357_049.jpg" alt="Sanitary Item 2">
+      </div>
+      <!-- Add more sanitary items -->
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-content" src="" alt="Enlarged view">
+</div>
+
+<!-- Add Hamburger Menu -->
+<div class="hamburger">☰</div>
+
+<!-- Add Modal -->
+<div class="modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-content" src="" alt="Enlarged view">
+</div>
+
+
 </section>
 
 
