@@ -1,7 +1,7 @@
 /* CSS Variables & Global Styles */
 :root {
   --primary-color: #2c3e50;
-  --accent-color: #d4af37;
+  --accent-color: #F5E9D4;
   --background-color: #f9f9f9;
   --text-color: #444;
   --muted-text-color: #777;
@@ -66,13 +66,17 @@ h1, h2, h3 {
 }
 
 .navbar .logo img {
-  height: 40px;
+  height: 50px;
+  width: 50px; /* Ensure square dimensions */
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover; /* Prevents distortion, crops if needed */
   margin-right: 10px;
 }
 
 .navbar .logo h1 {
   color: #fff;
   font-size: 1.5rem;
+  font-family: 'Cinzel', serif;
 }
 
 .nav-links {
@@ -92,7 +96,7 @@ h1, h2, h3 {
 }
 
 .nav-links a:hover {
-  color: var(--accent-color);
+  color: #facd7fea;
 }
 
 .hamburger {
@@ -129,9 +133,11 @@ h1, h2, h3 {
   z-index: 1;
 }
 
+/* Hero Section */
 .hero-content h1 {
+  font-family: 'Cinzel', serif;
   font-size: 3rem;
-  color: var(--accent-color);
+  color: #F5E9D4; /* Soft Ivory */
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
@@ -158,7 +164,7 @@ h1, h2, h3 {
 .about {
   padding: 4rem 1rem;
   text-align: center;
-  background-color: #fff;
+  background-color: #ffffff;
   opacity: 0;
 }
 
@@ -186,8 +192,8 @@ h1, h2, h3 {
 
 .about-images img {
   width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s;
+  border-radius: 25px;
+  transition: transform 0.25s;
 }
 
 .about-images img:hover {
@@ -221,15 +227,16 @@ h1, h2, h3 {
 .product-card {
   background: #fff;
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  border-radius: 25px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: transform 0.25s;
   cursor: pointer;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-25px);
 }
+
 
 .product-card img {
   width: 100%;
@@ -237,8 +244,8 @@ h1, h2, h3 {
 }
 
 .product-card h3 {
-  font-size: 1.3rem;
-  margin: 0.5rem 0;
+  font-size: 1.75rem;
+  margin: 0.25rem 0;
 }
 
 .product-card p {
@@ -272,7 +279,7 @@ h1, h2, h3 {
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background 0.3s;
+  transition: transform 0.3s;
 }
 
 .gallery-filter button.active {
@@ -286,12 +293,12 @@ h1, h2, h3 {
 
 .gallery-container.active {
   display: block;
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.25s ease-in;
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
   gap: 1rem;
 }
 
@@ -308,11 +315,11 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: transform 0.40s;
 }
 
 .gallery-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-15px);
 }
 
 .gallery-item:hover img {
@@ -359,7 +366,7 @@ h1, h2, h3 {
   color: var(--accent-color);
 }
 
-/* Contact Section */
+/* Contact Section (Updated with WhatsApp Button) */
 .contact {
   padding: 4rem 1rem;
   text-align: center;
@@ -376,33 +383,27 @@ h1, h2, h3 {
   margin-bottom: 2rem;
 }
 
-.contact-form {
-  max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25D366; /* WhatsApp green */
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin: 0 auto 2rem;
+  transition: transform 0.3s, background-color 0.3s;
 }
 
-.contact-form input,
-.contact-form textarea {
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.whatsapp-btn i {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
 }
 
-.contact-form button {
-  background-color: var(--accent-color);
-  color: var(--primary-color);
-  padding: 0.8rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.contact-form button:hover {
-  background-color: #e6b800;
+.whatsapp-btn:hover {
+  background-color: #20b354;
+  transform: scale(1.05);
 }
 
 .contact-info p {
@@ -495,9 +496,8 @@ footer .social-icons a:hover {
     font-size: 0.8rem;
   }
 
-  /* Gallery: Two columns on mobile (unchanged) */
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
   }
 }
@@ -532,4 +532,51 @@ footer .social-icons a:hover {
   .contact-form {
     padding: 0 1rem;
   }
+}
+/* call krne ka buttom */
+.call-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25D366; /* WhatsApp green */
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin: 0 auto 2rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.call-btn i {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.call-btn:hover {
+  background-color: #20b354;
+  transform: scale(1.05);
+}
+
+/* google map er buton*/
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #25D366;
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin: 0 auto 2rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.map-btn i {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.map-btn:hover {
+  background-color: #20b354;
+  transform: scale(1.05);
 }
