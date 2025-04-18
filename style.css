@@ -36,11 +36,71 @@ h1, h2, h3 {
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* Replace the existing modalPop keyframes */
 @keyframes modalPop {
-  0% { transform: scale(0.5); opacity: 0; }
-  80% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(30px); /* Start smaller and lower */
+    filter: blur(4px); /* Subtle blur for cinematic effect */
+  }
+  60% {
+    opacity: 0.95;
+    transform: scale(1.03) translateY(-3px); /* Gentle overshoot for elegance */
+    filter: blur(0); /* Sharpen as it settles */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0); /* Final position */
+    filter: blur(0);
+  }
 }
+/* New keyframes for modal backdrop fade */
+@keyframes modalBackdropFade {
+  0% {
+    background: rgba(0, 0, 0, 0); /* Start transparent */
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.9); /* End with dark backdrop */
+  }
+}  
+
+/* New keyframes for swipe/slide animation */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) scale(0.98); /* Slightly offset and smaller */
+    filter: blur(3px); /* Subtle blur for premium effect */
+  }
+  70% {
+    opacity: 0.95;
+    transform: translateX(-5px) scale(1.01); /* Gentle overshoot */
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1); /* Final position */
+    filter: blur(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px) scale(0.98); /* Slightly offset and smaller */
+    filter: blur(3px); /* Subtle blur for premium effect */
+  }
+  70% {
+    opacity: 0.95;
+    transform: translateX(5px) scale(1.01); /* Gentle overshoot */
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1); /* Final position */
+    filter: blur(0);
+  }
+}
+
 
 @keyframes fadeInSection {
   from { opacity: 0; transform: translateY(20px); }
@@ -168,6 +228,7 @@ h1, h2, h3 {
   opacity: 0;
 }
 
+
 .about.visible {
   animation: fadeInSection 1s ease-out forwards;
 }
@@ -234,13 +295,13 @@ h1, h2, h3 {
 }
 
 .product-card:hover {
-  transform: translateY(-25px);
+  transform: translateY(-40px);
 }
 
 
 .product-card img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .product-card h3 {
@@ -323,7 +384,7 @@ h1, h2, h3 {
 }
 
 .gallery-item:hover img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 /* Modal */
@@ -334,7 +395,7 @@ h1, h2, h3 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.9);
+ 
   z-index: 2000;
 }
 
@@ -342,15 +403,21 @@ h1, h2, h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: modalBackdropFade 0.6s ease-out forwards; /* Smooth backdrop fade */
 }
 
+/* Update .gallery-modal-content to reinforce animation */
 .gallery-modal-content {
   max-width: 90%;
   max-height: 90%;
   object-fit: contain;
-  border-radius: 8px;
-  animation: modalPop 0.4s ease-out;
-}
+  border-radius: 10px;
+  animation: modalPop 0.6s cubic-bezier(0.33, 0, 0, 1) forwards;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 233, 212, 0.15); /* Enhanced glow */
+  border: 1px solid rgba(245, 233, 212, 0.3);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(245, 233, 212, 0.05));
+  will-change: transform, opacity, filter; /* Optimize for swipe and modal animations */
+}22
 
 .gallery-modal-close {
   position: absolute;
@@ -359,7 +426,45 @@ h1, h2, h3 {
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.25s;
+}
+
+/* Arrow Button Styles */
+.gallery-modal-arrow {
+  display: none; /* Hidden by default, shown on PC */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(44, 62, 80, 0.7); /* Semi-transparent primary color */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  z-index: 2100;
+}
+
+.gallery-modal-arrow:hover {
+  background: var(--primary-color);
+  transform: translateY(-50%) scale(1.1); /* Subtle scale on hover */
+}
+
+.gallery-modal-arrow-left {
+  left: 20px;
+}
+
+.gallery-modal-arrow-right {
+  right: 20px;
+}
+
+/* Show arrows on PC (screens > 768px) */
+@media (min-width: 769px) {
+  .gallery-modal-arrow {
+    display: block;
+  }
 }
 
 .gallery-modal-close:hover {
@@ -475,19 +580,32 @@ footer .social-icons a:hover {
 
   .about-images img {
     width: 100%;
-    margin-bottom: 0;
+    height: auto;
+    min-height: 120px; /* Increase minimum height */
+    object-fit: cover; /* Ensure proper scaling */
   }
 
   /* Products: Three columns on mobile */
   .product-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
+    gap: 1rem;
+    padding: 0 0.5;
   }
 
   .product-card {
     padding: 0.8rem;
+    border-radius: 15px;
   }
+  .product-card img {
+    width: 100%;
+    height: auto;
 
+    min-height: 115px; /* Increase minimum height */
+    object-fit: cover; /* Ensure proper scaling */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+}
   .product-card h3 {
     font-size: 1.1rem;
   }
@@ -500,7 +618,7 @@ footer .social-icons a:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.8rem;
   }
-}
+
 
 @media (max-width: 320px) {
   /* About Us: Single column for very small screens */
