@@ -36,17 +36,25 @@ const filterButtons = document.querySelectorAll('.gallery-filter button');
 const galleryItems = document.querySelectorAll('.gallery-item');
 filterButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // Update active button
     filterButtons.forEach(btn => btn.classList.remove('active'));
     button.classList.add('active');
-
-    // Filter gallery items
     const filter = button.dataset.filter;
     galleryItems.forEach(item => {
-      item.style.display = filter === 'all' || item.classList.contains(filter) ? 'block' : 'none';
+      item.style.display = item.classList.contains(filter) ? 'block' : 'none';
     });
   });
 });
+
+// Set default filter to 'marble'
+document.querySelector('.gallery-filter button[data-filter="marble"]').classList.add('active');
+galleryItems.forEach(item => {
+  item.style.display = item.classList.contains('marble') ? 'block' : 'none';
+});
+
+// Update modal functionality
+function updateVisibleItems() {
+  visibleItems = Array.from(galleryItems).filter(item => item.classList.contains(currentFilter));
+}
 
 // Modal Functionality with Swipe and Arrow Navigation
 const modal = document.querySelector('.gallery-modal');
